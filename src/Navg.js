@@ -3,31 +3,40 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-
+import { Button } from 'react-bootstrap';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-let Navg = ({ setSearch, setSelectedColor, setSelectedCategory }) => {
+let Navg = ({ setSearch, setSelectedColor, setSelectedCategory, setSelectedCompany }) => {
 
 
     const handleColorClick = (color) => {
         setSelectedColor(color);
-        setSelectedCategory('');
+
     };
 
     const handleCategoryClick = (category) => {
         setSelectedCategory(category);
-        setSelectedColor('');
+
     };
 
 
+    let handleCompany = (cmp) => {
+        setSelectedCompany(cmp)
 
-
+    }
+    let showall = () => {
+        setSelectedCategory('')
+        setSearch('')
+        setSelectedColor('')
+        setSelectedCompany('')
+    }
 
     return (
         <>
             <Navbar expand="lg" className="bg-body-tertiary p-3">
-                <Container fluid>
-                    <Navbar.Brand href="#">Karan Dhiman shop</Navbar.Brand>
+                <Container >
+                    <Navbar.Brand href="#" onClick={showall}>UrbanCart
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
@@ -35,7 +44,7 @@ let Navg = ({ setSearch, setSelectedColor, setSelectedCategory }) => {
                             style={{ maxHeight: '100px' }}
                             navbarScroll
                         >
-                            <Nav.Link href="#">Home</Nav.Link>
+                            <Nav.Link href="#" className='mx-2  nav-font' onClick={showall}>All products</Nav.Link>
 
                             <NavDropdown title="Color" value='' id="navbarScrollingDropdown" >
                                 <NavDropdown.Item href="#" value='black' onClick={() => handleColorClick('')}>All</NavDropdown.Item>
@@ -55,7 +64,7 @@ let Navg = ({ setSearch, setSelectedColor, setSelectedCategory }) => {
                                 </NavDropdown.Item>
                             </NavDropdown>
                             <NavDropdown title="catgorey" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="#">Action</NavDropdown.Item>
+                                <NavDropdown.Item href="#" onClick={() => handleCategoryClick('')}>All</NavDropdown.Item>
                                 <NavDropdown.Item onClick={() => handleCategoryClick('Sneakers')}>
                                     Sneakers
                                 </NavDropdown.Item>
@@ -70,9 +79,7 @@ let Navg = ({ setSearch, setSelectedColor, setSelectedCategory }) => {
                                     Heels
                                 </NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link href="#" disabled>
-                                Link
-                            </Nav.Link>
+
                         </Nav>
                         <Form className="d-flex">
                             <Form.Control
@@ -88,7 +95,13 @@ let Navg = ({ setSearch, setSelectedColor, setSelectedCategory }) => {
                 </Container>
             </Navbar>
 
+            <Container>
+                <Button onClick={() => handleCompany('')} variant="secondary" className='m-2'>All</Button>
+                <Button onClick={() => handleCompany('nike')} variant="secondary" className='m-2'>Nike</Button>
+                <Button onClick={() => handleCompany('adidas')} variant="secondary" className='m-2'>Adidas</Button>
+                <Button onClick={() => handleCompany('puma')} variant="secondary" className='m-2'>Puma</Button>
 
+            </Container>
         </>
 
 

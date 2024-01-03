@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
 import Data from '../Data/Data'
 import './products.css'
-import { RingLoader } from 'react-spinners';
 import { Container } from 'react-bootstrap';
-import { logDOM } from '@testing-library/react';
-let Products = ({ search, selectedColor, selectedCategory }) => {
-    let filteredData = Data.filter(({ title, color, category }) =>
+let Products = ({ search, selectedColor, selectedCategory, selectedCompany }) => {
+
+    let filteredData = Data.filter(({ title, color, category, company }) =>
         (selectedColor.toLowerCase() === '' || color.toLowerCase() === selectedColor) &&
         (selectedCategory === '' || category.toLowerCase().includes(selectedCategory.toLowerCase())) &&
-        (search === '' || title.toLowerCase().includes(search.toLowerCase()))
+        (search === '' || title.toLowerCase().includes(search.toLowerCase())) &&
+        (selectedCompany.toLowerCase() === '' || company.toLowerCase() === selectedCompany)
+
 
     ).map(({ title, color, img, reviews, prevPrice, newPrice, company }) => (
         <div className='cards'>
@@ -22,14 +22,16 @@ let Products = ({ search, selectedColor, selectedCategory }) => {
             </div>
         </div>
     ));
-    console.log(!filteredData.length >= 0)
+    Data.map(({ company }) => {
+        console.log(company)
+    })
 
     return (
         <>
             {filteredData.length === 0 ? <div className='loading-page'>
-                <RingLoader color="#36d7b7" />
+                <h2>item not founded</h2>
             </div> :
-                <Container className='d-flex flex-wrap'>
+                <Container className='d-flex flex-wrap my-3'>
                     {filteredData}
                 </Container>
             }
