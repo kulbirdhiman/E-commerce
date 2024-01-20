@@ -1,18 +1,19 @@
 import Data from '../Data/Data'
 import './products.css'
 import { Container } from 'react-bootstrap';
-let Products = ({ search, selectedColor, selectedCategory, selectedCompany }) => {
-
+import { useSelector } from 'react-redux'
+let Products = ({ search, selectedCategory, selectedCompany }) => {
+    let selectedColor = useSelector(state => state.selectedColor)
+    console.log(selectedColor)
     let filteredData = Data.filter(({ title, color, category, company }) =>
         (selectedColor.toLowerCase() === '' || color.toLowerCase() === selectedColor) &&
         (selectedCategory === '' || category.toLowerCase().includes(selectedCategory.toLowerCase())) &&
         (search === '' || title.toLowerCase().includes(search.toLowerCase())) &&
         (selectedCompany.toLowerCase() === '' || company.toLowerCase() === selectedCompany)
 
-
-    ).map(({ title, color, img, reviews, prevPrice, newPrice, company }) => (
+    ).map(({ title, color, img, reviews, prevPrice, newPrice, company, id }) => (
         <div className='cards'>
-            <div className='card-header'>
+            <div key={id} className='card-header'>
                 <img src={img} className='card-imgs' alt="" />
                 <h5>{title} </h5>
                 <p className='my-1' > color:{color} </p>
@@ -22,9 +23,7 @@ let Products = ({ search, selectedColor, selectedCategory, selectedCompany }) =>
             </div>
         </div>
     ));
-    Data.map(({ company }) => {
-        console.log(company)
-    })
+
 
     return (
         <>
