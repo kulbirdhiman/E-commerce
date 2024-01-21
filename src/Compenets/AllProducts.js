@@ -1,10 +1,17 @@
 import Data from '../Data/Data'
 import './products.css'
+import { Button } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
-import { useSelector } from 'react-redux'
-let Products = ({ search, selectedCategory, selectedCompany }) => {
-    let selectedColor = useSelector(state => state.selectedColor)
-    console.log(selectedColor)
+import { useSelector, useDispatch } from 'react-redux'
+import { additem } from '../store/CartSlice'
+let AllProducts = () => {
+    const Dispacth = useDispatch()
+    const selectedColor = useSelector((state) => state.Product.selectedColor);
+    const selectedCompany = useSelector(state => state.Product.selectedCompany)
+    const selectedCategory = useSelector(state => state.Product.selectedCategory)
+    const search = useSelector(state => state.Product.search)
+
+
     let filteredData = Data.filter(({ title, color, category, company }) =>
         (selectedColor.toLowerCase() === '' || color.toLowerCase() === selectedColor) &&
         (selectedCategory === '' || category.toLowerCase().includes(selectedCategory.toLowerCase())) &&
@@ -20,10 +27,10 @@ let Products = ({ search, selectedCategory, selectedCompany }) => {
                 <p className='my-1'>Total reviews: {reviews} </p>
                 price: <del>{prevPrice}</del> {newPrice} <br />
                 <span>company :{company}</span>
+
             </div>
         </div>
     ));
-
 
     return (
         <>
@@ -37,4 +44,4 @@ let Products = ({ search, selectedCategory, selectedCompany }) => {
         </>
     )
 }
-export default Products;
+export default AllProducts;

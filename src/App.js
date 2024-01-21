@@ -1,17 +1,13 @@
 import './App.css';
-import Navg from './Navg'
+import { Provider } from 'react-redux';
+import store from './store/store';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Main from './Compenets/Main';
 function App() {
-
-
-  // Function to update the 'typed' state
-
-
   return (
-
-    <Main />
-
+    <Provider store={store} >
+      <Main />
+    </Provider>
   );
 }
 

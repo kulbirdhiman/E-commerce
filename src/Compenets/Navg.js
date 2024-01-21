@@ -5,30 +5,33 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Button } from 'react-bootstrap';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useDispatch } from 'react-redux';
+import { setSearch, setSelectedColor, setSelectedCategory, setSelectedCompany } from '../store/ProductSlice'
+import { Link } from 'react-router-dom';
+let Navg = () => {
 
-let Navg = ({ setSearch, setSelectedColor, setSelectedCategory, setSelectedCompany }) => {
-
+    let Dispacth = useDispatch()
 
     const handleColorClick = (color) => {
-        setSelectedColor(color);
+        Dispacth(setSelectedColor(color))
 
     };
 
     const handleCategoryClick = (category) => {
-        setSelectedCategory(category);
+        Dispacth(setSelectedCategory(category))
 
     };
 
 
     let handleCompany = (cmp) => {
-        setSelectedCompany(cmp)
+        Dispacth(setSelectedCompany(cmp))
 
     }
     let showall = () => {
-        setSelectedCategory('')
-        setSearch('')
-        setSelectedColor('')
-        setSelectedCompany('')
+        Dispacth(setSelectedCategory(''))
+        Dispacth(setSearch(''))
+        Dispacth(setSelectedColor(''))
+        Dispacth(setSelectedCompany(''))
     }
 
     return (
@@ -87,12 +90,13 @@ let Navg = ({ setSearch, setSelectedColor, setSelectedCategory, setSelectedCompa
                                 placeholder="Search"
                                 className="me-2"
 
-                                onChange={e => setSearch(e.target.value)}
+                                onChange={e => Dispacth(setSearch(e.target.value))}
                             />
 
                         </Form>
                     </Navbar.Collapse>
                 </Container>
+
             </Navbar>
 
             <Container>

@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.card-items {
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    width: 75%;
+    margin: auto;
+
+}
+
+.item {
+    /* display: flex; */
+    border: 2px solid grey;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.item-d {}
