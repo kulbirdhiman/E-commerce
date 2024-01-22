@@ -8,6 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useDispatch } from 'react-redux';
 import { setSearch, setSelectedColor, setSelectedCategory, setSelectedCompany } from '../store/ProductSlice'
 import { Link } from 'react-router-dom';
+import './cart.css'
 let Navg = () => {
 
     let Dispacth = useDispatch()
@@ -38,9 +39,9 @@ let Navg = () => {
         <>
             <Navbar expand="lg" className="bg-body-tertiary p-3">
                 <Container >
-                    <Navbar.Brand href="#" onClick={showall}>UrbanCart
+                    <Navbar.Brand href="#" onClick={showall}>
                     </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="navbarScroll" />
+                    <Navbar.Toggle aria-controls="navbarScroll" />  <Link to='/' className='css' >UrbanCart</Link>
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
                             className="me-auto my-2 my-lg-0"
@@ -95,17 +96,12 @@ let Navg = () => {
 
                         </Form>
                     </Navbar.Collapse>
+                    <Link to='/cart' className='css' >Cart</Link>
                 </Container>
 
             </Navbar>
 
-            <Container>
-                <Button onClick={() => handleCompany('')} variant="secondary" className='m-2'>All</Button>
-                <Button onClick={() => handleCompany('nike')} variant="secondary" className='m-2'>Nike</Button>
-                <Button onClick={() => handleCompany('adidas')} variant="secondary" className='m-2'>Adidas</Button>
-                <Button onClick={() => handleCompany('puma')} variant="secondary" className='m-2'>Puma</Button>
 
-            </Container>
         </>
 
 

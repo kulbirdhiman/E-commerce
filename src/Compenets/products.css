@@ -3,9 +3,13 @@
     padding: 0;
 }
 
+.btn-sec {
+    background-color: rgb(90, 234, 90);
+}
+
 .cards {
     margin: 10px;
-
+    padding: 10px 0px;
     width: 200px;
     text-align: center;
     border: 2px solid rgb(225, 206, 206);

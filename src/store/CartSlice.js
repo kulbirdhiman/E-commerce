@@ -1,16 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Placeholder } from "react-bootstrap";
 
 const CartSlice = createSlice({
     name: 'Cart',
     initialState: [],
     reducers: {
         additem: (state, action) => {
-            state.push(action.payload)
-        },
-        removeItem: (state, action) => state.filter(item => item.id !== action.payload)
+
+            if (!state.includes(action.payload)) {
+                state.push(action.payload)
+            }
+        }
+
+        ,
+        removeItem: (state, action) => {
+            const itemIdToRemove = action.payload;
+            return state.filter(item => item.title !== itemIdToRemove);
+        }
+
+
+
 
     }
 })
 
-export const { additem } = CartSlice.actions
+export const { additem, removeItem } = CartSlice.actions
 export default CartSlice.reducer
